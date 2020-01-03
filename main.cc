@@ -1,17 +1,30 @@
+#include <stdio.h>
 #include <poll.h>
 
 #include "main.h"
 #include "utils.h"
 #include "MainHandler.h"
 
-int main()
+int main(int argc, char *argv[])
 {
+    if (argc < 2)
+    {
+        printf("No device provided\n");
+        exit(-1);
+    }
+
     struct libinput *li;
     struct libinput_event *event;
     Handler *handler = new MainHandler();
 
     li = libinput_path_create_context(&interface, NULL);
-    struct libinput_device *dev = libinput_path_add_device(li, "/dev/input/by-path/platform-i8042-serio-1-event-mouse");
+    struct libinput_device *dev = libinput_path_add_device(li, argv[1]);
+    if (!dev)
+    {
+        printf("failed to open: %s\n", argv[1]);
+        exit(-1);
+    }
+
     libinput_device_config_tap_set_enabled(dev, LIBINPUT_CONFIG_TAP_ENABLED);
 
     struct pollfd fds;
