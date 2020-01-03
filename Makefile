@@ -1,4 +1,4 @@
-OBJ = main.o utils.o MainHandler.o SwipeHandler.o PointerHandler.o TapHandler.o
+OBJ = main.o utils.o MainHandler.o SwipeHandler.o PointerHandler.o TapHandler.o PinchHandler.o
 
 .PHONY: clean
 

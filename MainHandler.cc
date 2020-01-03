@@ -2,9 +2,11 @@
 #include "SwipeHandler.h"
 #include "PointerHandler.h"
 #include "TapHandler.h"
+#include "PinchHandler.h"
 
-tester MainHandler::handlers[3] = {
+tester MainHandler::handlers[4] = {
     &SwipeHandler::test,
+    &PinchHandler::test,
     &PointerHandler::test,
     &TapHandler::test
 };
