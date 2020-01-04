@@ -19,13 +19,13 @@ public:
     struct libinput_event_gesture *current_gevent = NULL;
     virtual void handle(Handler* &handler);
 
-    static Handler* test(Handler *handle);
+    static MainHandler* test(MainHandler *handle);
 
 protected:
     void update();
 
 private:
-    static tester handlers[2];
+    static tester<SwipeHandler> handlers[2];
 };
 
 class SwitchWindowHandler: public SwipeHandler
@@ -36,7 +36,7 @@ public:
     bool started = false;
     void handle(Handler* &handler);
 
-    static Handler* test(Handler* handle);
+    static SwipeHandler* test(SwipeHandler* handle);
 };
 
 class OneHitHandler: public SwipeHandler
@@ -46,7 +46,7 @@ public:
 
     void handle(Handler* &handle);
 
-    static Handler* test(Handler* handle);
+    static SwipeHandler* test(SwipeHandler* handle);
 };
 
 #endif

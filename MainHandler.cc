@@ -4,7 +4,7 @@
 #include "TapHandler.h"
 #include "PinchHandler.h"
 
-tester MainHandler::handlers[4] = {
+tester<MainHandler> MainHandler::handlers[4] = {
     &SwipeHandler::test,
     &PinchHandler::test,
     &PointerHandler::test,

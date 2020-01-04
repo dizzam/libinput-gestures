@@ -12,7 +12,7 @@ public:
 
     void handle(Handler* &);
 
-    static Handler* test(Handler *handler);
+    static MainHandler* test(MainHandler *handler);
 };
 
 #endif

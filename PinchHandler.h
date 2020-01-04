@@ -12,7 +12,7 @@ public:
     double last_scale = 1;
     void handle(Handler* &handler);
 
-    static Handler* test(Handler* handler); 
+    static MainHandler* test(MainHandler* handler); 
 };
 
 #endif

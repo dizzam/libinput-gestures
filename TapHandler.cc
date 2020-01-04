@@ -2,12 +2,11 @@
 
 #include "TapHandler.h"
 
-Handler* TapHandler::test(Handler* handler)
+MainHandler* TapHandler::test(MainHandler* handler)
 {
-    MainHandler* handler1 = static_cast<MainHandler*>(handler);
-    if (handler1->type == LIBINPUT_EVENT_POINTER_BUTTON)
+    if (handler->type == LIBINPUT_EVENT_POINTER_BUTTON)
     {
-        return new TapHandler(*handler1);
+        return new TapHandler(*handler);
     }
 
     return NULL;

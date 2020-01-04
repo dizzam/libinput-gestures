@@ -3,12 +3,11 @@
 
 #include "PointerHandler.h"
 
-Handler* PointerHandler::test(Handler* handler)
+MainHandler* PointerHandler::test(MainHandler* handler)
 {
-    MainHandler *handler1 = static_cast<MainHandler *>(handler);
-    if (handler1->type == LIBINPUT_EVENT_POINTER_AXIS)
+    if (handler->type == LIBINPUT_EVENT_POINTER_AXIS)
     {
-        return new PointerHandler(*handler1);
+        return new PointerHandler(*handler);
     }
 
     return NULL;

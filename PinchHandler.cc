@@ -3,11 +3,10 @@
 #include "PinchHandler.h"
 #include "utils.h"
 
-Handler* PinchHandler::test(Handler* handler)
+MainHandler* PinchHandler::test(MainHandler* handler)
 {
-    MainHandler *handler1 = static_cast<MainHandler*>(handler);
-    if (handler1->type == LIBINPUT_EVENT_GESTURE_PINCH_BEGIN)
-        return new PinchHandler(*handler1);
+    if (handler->type == LIBINPUT_EVENT_GESTURE_PINCH_BEGIN)
+        return new PinchHandler(*handler);
 
     return NULL;
 }

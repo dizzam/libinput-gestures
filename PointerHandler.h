@@ -25,7 +25,7 @@ public:
     struct libinput_event_pointer *current_pevent = NULL;
     virtual void handle(Handler* &handler);
 
-    static Handler* test(Handler* handler);
+    static MainHandler* test(MainHandler* handler);
 
 protected:
     enum update_status update(Handler* &handler);

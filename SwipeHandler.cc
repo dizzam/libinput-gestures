@@ -4,17 +4,16 @@
 #include "MainHandler.h"
 #include "SwipeHandler.h"
 
-tester SwipeHandler::handlers[2] = {
+tester<SwipeHandler> SwipeHandler::handlers[2] = {
     &SwitchWindowHandler::test,
     &OneHitHandler::test,
 };
 
-Handler* SwipeHandler::test(Handler* handler)
+MainHandler* SwipeHandler::test(MainHandler* handler)
 {
-    MainHandler *handler1 = static_cast<MainHandler *>(handler);
-    if (handler1->type == LIBINPUT_EVENT_GESTURE_SWIPE_BEGIN)
+    if (handler->type == LIBINPUT_EVENT_GESTURE_SWIPE_BEGIN)
     {
-        return new SwipeHandler(*handler1);
+        return new SwipeHandler(*handler);
     }
 
     return NULL;
@@ -53,12 +52,11 @@ void SwipeHandler::handle(Handler* &handler)
     }
 }
 
-Handler* SwitchWindowHandler::test(Handler* handler)
+SwipeHandler* SwitchWindowHandler::test(SwipeHandler* handler)
 {
-    SwipeHandler *handler1 = static_cast<SwipeHandler *>(handler);
-    if (!handler1->flag && handler1->finger == 3)
+    if (!handler->flag && handler->finger == 3)
     {
-        if (handler1->motion.primary == LEFT || handler1->motion.primary == RIGHT) return new SwitchWindowHandler(*handler1);
+        if (handler->motion.primary == LEFT || handler->motion.primary == RIGHT) return new SwitchWindowHandler(*handler);
     }
 
     return NULL;
@@ -104,12 +102,11 @@ void SwitchWindowHandler::handle(Handler* &handler)
     }
 }
 
-Handler* OneHitHandler::test(Handler* handler)
+SwipeHandler* OneHitHandler::test(SwipeHandler* handler)
 {
-    SwipeHandler *handler1 = static_cast<SwipeHandler *>(handler);
-    if (!handler1->flag && handler1->motion.primary != NONE)
+    if (!handler->flag && handler->motion.primary != NONE)
     {
-        return new OneHitHandler(*handler1);
+        return new OneHitHandler(*handler);
     }
 
     return NULL;

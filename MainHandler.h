@@ -15,7 +15,7 @@ public:
     enum libinput_event_type type = LIBINPUT_EVENT_NONE;
     virtual void handle(Handler* &handler);
 private:
-    static tester handlers[4];
+    static tester<MainHandler> handlers[4];
 };
 
 #endif

@@ -29,6 +29,24 @@ void handler_gc();
 
 void update_handler(Handler* &handler, Handler *new_handler);
 
-void update_handler(Handler* &handler, const tester handlers[], int n);
+template<class H>
+using tester = H* (*)(H*);
+
+template<class H>
+void update_handler(Handler* &handler, const tester<H> handlers[], int n)
+{
+    Handler *new_handler = NULL;
+    for (int i = 0; i < n; i++)
+    {
+        if (!handlers[i]) continue;
+
+        new_handler = handlers[i](static_cast<H*>(handler));
+        if (new_handler)
+        {
+            update_handler(handler, new_handler);
+            return;
+        }
+    }
+}
 
 #endif

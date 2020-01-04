@@ -81,16 +81,3 @@ void update_handler(Handler* &handler, Handler *new_handler)
     handler = new_handler;
     handler->handle(handler);
 }
-
-void update_handler(Handler* &handler, const tester handlers[], int n)
-{
-    Handler *new_handler = NULL;
-    for (int i = 0; i < n; i++)
-    {
-        new_handler = handlers[i](handler);
-        if (new_handler) break;
-    }
-
-    if (!new_handler) return ;
-    else update_handler(handler, new_handler);
-}

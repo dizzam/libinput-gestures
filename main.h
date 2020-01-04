@@ -11,6 +11,4 @@ public:
     virtual void handle(Handler* &handle) = 0;
 };
 
-typedef Handler* (*tester)(Handler *);
-
 #endif
